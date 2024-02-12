@@ -1,0 +1,13 @@
+
+.cartContainer {
+}
+
+.endUl_cartNumber {
+    font-size: 2rem;
+    color: aliceblue;
+}
+
+.cartContainer__img {
+    height: 2rem;
+    filter: brightness(10);
+}

@@ -1,7 +1,22 @@
 
 .container {
-    display: grid;
+    display: grid   ;
     grid-template-rows: 1fr 4fr 1fr;
+    width: 100vw;
+    height: 100vh; 
+    position: relative;
+
+
+}
+
+.videoContainer {
+    z-index: -10;
+    width: 100vw;
     height: 100vh;
+    position: absolute;
+    overflow: hidden;
+}
+
+.video {
     width: 100vw;
 }

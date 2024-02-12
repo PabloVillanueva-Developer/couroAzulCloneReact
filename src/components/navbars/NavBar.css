@@ -1,0 +1,45 @@
+@font-face {
+    font-family: navBarTitles;
+    src: url(../../assets/fonts/gillsans-medium-webfont.woff2);
+}
+
+a {
+    color: aliceblue;
+}
+
+
+.nav {
+    margin: 2.7rem 2rem 0 2rem;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 0.5fr 1fr;
+    font-family: navBarTitles;
+    font-size: 0.85rem;
+    color: rgb(188, 197, 205);
+    
+}
+
+.startUl {
+    margin-right:7rem ;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+}
+
+.middleUl {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2rem 0 2rem;
+    align-items: center;
+    
+}
+
+.endUl {
+    display: flex;
+    justify-content: end;
+    top: 20rem;
+}
+
+
+
+
+
