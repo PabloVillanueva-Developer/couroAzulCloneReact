@@ -1,0 +1,22 @@
+.ulProductsAndCart {
+    display: flex;
+    margin-left: 3rem;
+    gap: 3rem;
+    color: aliceblue;
+    padding-top: 2rem;
+}
+
+.products {
+    margin-left: 4rem;
+
+}
+
+.carts {
+    margin-left: 4rem;
+}
+
+.line {
+    width: 20rem;
+    color: aliceblue;
+    height: 1rem;
+}

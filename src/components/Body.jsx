@@ -4,7 +4,6 @@ import React from 'react'
 const Body = () => {
     return (
         <main className='Body'>
-
         </main>
     )
 }
