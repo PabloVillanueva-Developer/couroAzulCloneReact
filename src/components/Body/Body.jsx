@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import './Body.css'
-import ProductContainer from './ProductContainer'
-import CartContainer from './CartContainer'
+import ProductContainer from '../../components/ProductContainer/ProductContainer'
+import CartContainer from '../CartContainer/CartContainer'
 
 
-const Body = () => {
+const Body = (apiData) => {
 
     const [showProducts, setShowProducts] = useState(false)
     const [showCart, setShowCart] = useState(false)
@@ -20,7 +20,6 @@ const Body = () => {
         setShowCart(true)
     }
 
-
      return (
         <main className='body'>
            
@@ -30,7 +29,7 @@ const Body = () => {
             </div>
 
             <ul>
-                {showProducts && <ProductContainer />}
+                {showProducts && <ProductContainer apiData={apiData}/>}
                 {showCart && <CartContainer message="GREETING" />}     
             </ul>
         </main>
