@@ -1,39 +1,36 @@
 import React from 'react'
 import { useState } from 'react'
 import './Body.css'
-import ProductContainer from '../../components/ProductContainer/ProductContainer'
+import ListProductContainer from '../ListContainer/ListProductContainer'
 import CartContainer from '../CartContainer/CartContainer'
+import DetailProductContainer from '../DetailProductContainer/DetailProductContainer'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
 const Body = (apiData) => {
+    const [selectedProduct, setSelectedProduct] = useState(null);
+  console.log(selectedProduct)
 
-    const [showProducts, setShowProducts] = useState(false)
-    const [showCart, setShowCart] = useState(false)
 
-    const selectProducts = () => {
-        setShowProducts(true)
-        setShowCart(false)
-    }
 
-    const selectCart = () => {
-        setShowProducts(false)
-        setShowCart(true)
-    }
 
-     return (
+    return (
         <main className='body'>
-           
             <div className='buttonsContainer'>
-                <a href='#' className="buttons" onClick={selectProducts}>SHOW PRODUCTS</a>
-                <a href='#' className="buttons" onClick={selectCart}>SHOW CART</a>
+                <Link to='/category/:id' className="buttons">SHOW LIST PRODUCTS</Link>
+                <Link to='/item/:id' className="buttons">SHOW DETAIL PRODUCTS</Link>
+                <Link to='/cartContainer' className="buttons">SHOW CART</Link>
             </div>
 
-            <ul>
-                {showProducts && <ProductContainer apiData={apiData}/>}
-                {showCart && <CartContainer message="GREETING" />}     
-            </ul>
+    
+            <Routes>
+                <Route exact path="/category/:id" element={<ListProductContainer apiData={apiData} setSelectedProduct={setSelectedProduct} />} />
+                <Route path="/item/:id" element={<DetailProductContainer selectedProduct={selectedProduct} />} />
+                <Route path="/cartContainer" element={<CartContainer message="GREETING" />} />
+            </Routes>
         </main>
-    )
+    );
+                
 }
 
-export default Body
+export default Body;

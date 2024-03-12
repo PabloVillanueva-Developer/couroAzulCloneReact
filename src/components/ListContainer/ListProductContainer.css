@@ -1,0 +1,21 @@
+.productContainer {
+    color: aliceblue;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+      
+     
+}
+
+
+.ListProductContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 25rem;
+    width: 40rem;
+    overflow: auto;
+    margin: 0 5% 0 5%;
+
+}
+

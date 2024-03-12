@@ -1,11 +1,14 @@
 import React from 'react';
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget';
+import { Link } from 'react-router-dom';
 
 const NavBar  = () => {
     return (
         <nav className='nav'>
-            <img src="" alt="Logo" />
+              <Link to="/" className="logo-link">
+                <img src="#" alt="Logo" />
+            </Link>
             <ul className='startUl'>
                 <a href='#'>MARKETS</a>
                 <a href='#'>PASSION FOR LEATHER</a>

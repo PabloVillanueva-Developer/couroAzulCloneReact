@@ -1,0 +1,22 @@
+
+.detailProductContainer{
+    height: 25rem;
+    width: 40rem;
+    color: aliceblue;
+}
+
+
+.addCartButtons {
+    display: flex;
+    gap: 2rem;
+}
+
+.plusButton {
+    width: 2rem;
+    height: 2rem;
+}
+
+.minusButton {
+    width: 2rem;
+    height: 2rem;
+}
