@@ -1,14 +1,18 @@
 
+import { useParams } from "react-router-dom"
 import "./DetailProductContainer.css"
 
-const DetailProductContainer = (props) => {
+const DetailProductContainer = ({apiData}) => {
 
-    const {selectedProduct} = props
-   
+    const {id} = useParams()
+    const selectedProduct = apiData.find(product => product.id === id);
+  
+
 return (
 <div className='detailProductContainer' >
-                    { selectedProduct && (     
-                        <div className='' key={selectedProduct.id}>
+                    { apiData && (     
+                          
+                        <div className='' key={id}>
                             <h3>{selectedProduct.title}</h3>
                             <img src={selectedProduct.thumbnail} alt={selectedProduct.title} />
                             <p>{selectedProduct.price}</p>
@@ -22,8 +26,10 @@ return (
                             </div>
                         </div>
                         )
+
                     }  
-            </div>
+    </div>
+
 )
 }
 

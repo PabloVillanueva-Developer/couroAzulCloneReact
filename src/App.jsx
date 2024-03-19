@@ -4,6 +4,10 @@ import Body from './components/Body/Body'
 import Footer from './components/Footer/Footer'
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import DetailProductContainer from './components/DetailProductContainer/DetailProductContainer'
+/* import ListProductContainer from './components/ListContainer/ListProductContainer'
+import CartContainer from './components/CartContainer/CartContainer' */
+
 /* import ListProductContainer from './components/ListProductContainer/ListProductContainer'
 import DetailProductContainer from './components/DetailProductContainer/DetailProductContainer' */
 
@@ -18,36 +22,42 @@ function App() {
     try {
     const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=autos`)
     const data = await response.json()
+  
     setApiData(data.results)
-      console.log(data.results)
-
-
-    }catch(err) {console.error('Fallo Solicitud a Api ML. Error:', err)}
+ 
+    }catch(err) {console.error('Fallo Solicitud a Api ML. Posible error de conexion a internet. Error:', err)
+    }
   }
   fetchData();
-
   },[])
-
-
-
     return (
 
      <>
     <Router>
+       {/*  <Routes>
+                  {   <Route path="/product/:id" element={<DetailProductContainer/>}/>
+                   <Route path="/category/:id"/>
+                    <Route path="/item/:id" />
+                    <Route path="/cartContainer" />}
+        </Routes> */}
              <div className="container">
             <div  className='videoContainer'>
               <video className='video' autoPlay muted loop src="/assets/videos/couro-landing.webm"></video>
               {/* <ReactPlayer url='../public/assets/videos/couro-landing.webm' className='react-player video' playing={true} muted={true} width='100%' height='100%'/> */}
             </div>
             <Header />
-            {apiData && <Body apiData={apiData}/>}
+            <Body apiData={apiData}/>
             <Footer/>
+           
           </div>
+
           
-        </Router>
+    </Router>
       </>
 
   )
 }
 
 export default App
+
+
