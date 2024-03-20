@@ -8,7 +8,7 @@ const Loading = () => {
 
     return (
 
-        <div className='loadingContainer'>
+    <div className='loadingContainer'>
         <p>CARGANDO...</p>
     </div>
     )

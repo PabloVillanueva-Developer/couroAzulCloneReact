@@ -2,4 +2,7 @@
 .loadingContainer{
     font-size: 5rem;
     color: aliceblue;
+    justify-self: center;
+    align-self: center;
 }
+

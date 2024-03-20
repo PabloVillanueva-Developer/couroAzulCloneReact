@@ -1,15 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
-import './Body.css'
+import './Main.css'
 import ItemListContainer from '../ItemListContainer/ItemListContainer'
 import DetailProductContainer from '../DetailProductContainer/DetailProductContainer'
 import Loading from '../Loading/Loading'
+import CartWidget from '../CartWidget/CartWidget'
 
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
 
 
 const Body = ({apiData}) => {
-   
+   Router
  
     let {id} = useParams() 
     if (!apiData) {
@@ -27,23 +28,28 @@ const Body = ({apiData}) => {
                 <Link to={`/`} className="buttons">SHOW LIST PRODUCTS</Link>
             {/*     <Link to={`/product/${id}`} className="buttons" >SHOW DETAIL PRODUCTS</Link > */}
                 <Link to='/cartContainer' className="buttons">SHOW CART</Link>
-            </div>
-
-            <div className='brands'>
-                {conditionsProductsData.map((brand) => (
-                   <Link to={`/category/${brand}`} key={brand}>
-                    <h3 key={brand}>{brand}</h3>
+                <ul >
+                    <Link to='/cartContainer'>
+                        <CartWidget/>
                     </Link>
-                    ))}
+                </ul>
             </div>
 
-            <div>
+           
+                <ul className='brands'>
+                    <li> <Link to='/Category'>All brands</Link> </li>
+                    <li> <Link to='/Category/Peugeot'>Peugeot</Link> </li>
+                    <li> <Link to='/Category/Fiat'>Fiat</Link> </li>
+                    <li> <Link to='/Category/Chevrolet'>Chevrolet</Link> </li>
+                </ul>
+        
                 <Routes>
                         <Route exact path="/" element= {<ItemListContainer apiData={apiData}/> }/>
-                        <Route exact path="/category/:brand" element= {<ItemListContainer apiData={apiData}/> }/>
+                        <Route exact path="/category/:modelo" element= {<ItemListContainer apiData={apiData}/> }/>
+                        <Route exact path="/category" element= {<ItemListContainer apiData={apiData}/> }/>
                         <Route path="/item/:id" element={<DetailProductContainer apiData={apiData}/>}/>
                 </Routes>
-            </div>
+          
         </main>
     );
                 

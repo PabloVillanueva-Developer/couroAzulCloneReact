@@ -11,3 +11,10 @@
     height: 2rem;
     filter: brightness(10);
 }
+
+.endUl {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    top: 20rem;
+  }

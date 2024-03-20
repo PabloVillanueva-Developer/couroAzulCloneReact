@@ -20,9 +20,7 @@ const NavBar  = () => {
                 <a href='#'>CONTACTS</a>
                 <a href='#'>PT | EN</a>
             </ul>
-            <ul className='endUl'>
-                    <CartWidget />
-            </ul>
+            
           
         </nav>
 

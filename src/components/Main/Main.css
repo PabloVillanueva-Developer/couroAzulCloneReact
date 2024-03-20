@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .main {
+    display: grid;
+    grid-template-rows: 0.01fr 0.01fr 1fr;
+    
+  }
+  
+.buttons {
+    font-family: navBarTitles;
+    font-size: 1rem;
+}
+
+.buttonsContainer {
+    margin-left: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-self: center;
+   align-items: center;
+
+}
+
+.brands {
+    display: flex;
+    gap: 15rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    color: aliceblue;
+    font-size: 2rem;
+    background-color: rgba(25, 52, 36, 0.633);
+    width: 90%;
+    height: 3rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+
+

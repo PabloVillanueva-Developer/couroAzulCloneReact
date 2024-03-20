@@ -2,11 +2,28 @@ import React from 'react';
 import './ItemListContainer.css';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading/Loading';
+import { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 
-const ListProductContainer = ({ apiData }) => {
-    const { brand } = useParams();
+const ListProductContainer = () => {
+    
+  const [apiData, setApiData] = useState(null)
 
+  useEffect(() => { // Consulta a base de datos
+   const fetchData = async () => {
+    try {
+    const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=autos`)
+    const data = await response.json()
+  
+    setApiData(data.results)
+    }catch(err) {console.error('Fallo Solicitud a Api ML. Posible error de conexion a internet. Error:', err)
+    }
+  }
+  fetchData();
+  },[])
+
+
+    const { modelo } = useParams();
     if (!apiData) {
         return <Loading />;
     } 
@@ -14,9 +31,11 @@ const ListProductContainer = ({ apiData }) => {
     const apiDataArray = Object.values(apiData);
     const apiDataArrayFlat = apiDataArray.flat();
 
-    const filteredProducts = brand 
-        ? apiDataArrayFlat.filter(product => product.attributes[7].value_name === brand) 
-        : apiDataArrayFlat; // Si brand no está definido, se muestran todos los productos
+    const filteredProducts = modelo 
+    ? apiDataArrayFlat.filter(product => product.attributes[7].value_name === modelo) 
+    : apiDataArrayFlat; // Si brand no está definido, se muestran todos los productos
+
+    
 
     return (
         <div className='productContainer'>

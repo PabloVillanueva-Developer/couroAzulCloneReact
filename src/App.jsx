@@ -1,6 +1,6 @@
 import './App.css'
 import Header from './components/Header/Header'
-import Body from './components/Body/Body'
+import Body from './components/Main/Main'
 import Footer from './components/Footer/Footer'
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
@@ -34,13 +34,7 @@ function App() {
 
      <>
     <Router>
-       {/*  <Routes>
-                  {   <Route path="/product/:id" element={<DetailProductContainer/>}/>
-                   <Route path="/category/:id"/>
-                    <Route path="/item/:id" />
-                    <Route path="/cartContainer" />}
-        </Routes> */}
-             <div className="container">
+               <div className="container">
             <div  className='videoContainer'>
               <video className='video' autoPlay muted loop src="/assets/videos/couro-landing.webm"></video>
               {/* <ReactPlayer url='../public/assets/videos/couro-landing.webm' className='react-player video' playing={true} muted={true} width='100%' height='100%'/> */}
