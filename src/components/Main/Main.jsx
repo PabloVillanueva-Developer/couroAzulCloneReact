@@ -38,7 +38,7 @@ const Body = ({apiData}) => {
            
                 <ul className='brands'>
                     <li> <Link to='/Category'>All brands</Link> </li>
-                    <li> <Link to='/Category/Peugeot'>Peugeot</Link> </li>
+                    <li> <Link to='/Category/Ford'>Ford</Link> </li>
                     <li> <Link to='/Category/Fiat'>Fiat</Link> </li>
                     <li> <Link to='/Category/Chevrolet'>Chevrolet</Link> </li>
                 </ul>

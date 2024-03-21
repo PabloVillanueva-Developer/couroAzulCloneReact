@@ -4,7 +4,7 @@
     grid-template-columns: 1fr;
     justify-self: center;
     align-self: center;
-    height: 30rem;
+    height: 20rem;
     width: 80rem;
     color: aliceblue;
 }
@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
     font-size: 1.5rem;
 }
 
@@ -29,11 +29,21 @@
 .plusButton {
     width: 2rem;
     height: 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 
 .minusButton {
     width: 2rem;
     height: 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .addButton{
@@ -56,3 +66,27 @@
     align-self: center;
 }
 
+.quantity {
+    background-color: blueviolet;
+    width: 4rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.minusButton:active {
+    transform: scale(1.15);
+    background-color: blueviolet;
+}
+
+.plusButton:active {
+    transform: scale(1.15);
+    background-color: blueviolet;
+}
+
+.addButton:active {
+    transform: scale(1.1);
+    filter: brightness(1.5);
+}
