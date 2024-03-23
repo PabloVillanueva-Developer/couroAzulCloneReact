@@ -47,8 +47,7 @@ const ListProductContainer = () => {
     const filteredProducts = modelo 
     ? products.filter(product => product.category === modelo) 
     : products; // Si brand no está definido, se muestran todos los productos
-    console.log('aca estamos')
-    console.log(filteredProducts)
+ 
 
 
 

@@ -1,18 +1,38 @@
-import React from 'react'
-import './CartContainer.css'
 
-const CartContainer = (props) => {
+    import './CartContainer.css'
+    import { MiContexto } from '../../App';
+    import React, { useContext, useEffect, useState } from 'react';
 
-    const {message} = props
 
-    return (
-        <div className="cartContainer">
-            {message}
-        </div>
-       
+    let arrSelectedProducts = []
+    const CartContainer = () => {
+
+
     
-    )
+        const { datoContext, setDatoContext } = useContext(MiContexto);
+        const [dataSelectedProduct, setDataSelectedProduct] = useState({})
+    
 
-}
+        useEffect (() => {
+            setDataSelectedProduct(datoContext)
+                },[datoContext])
 
-export default CartContainer
+        useEffect (() => {
+            if(Object.values(dataSelectedProduct).length !== 0)  {
+
+            arrSelectedProducts.push(dataSelectedProduct)
+            console.log(arrSelectedProducts)
+            }
+        }, [dataSelectedProduct])
+
+    if(dataSelectedProduct) {
+        return (
+            <div className="cartContainer">
+                <img src={`${dataSelectedProduct.img}`} alt="" />
+            </div>
+        )
+
+    }
+    }
+
+    export default CartContainer

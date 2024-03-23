@@ -7,6 +7,7 @@ import Loading from '../Loading/Loading'
 import CartWidget from '../CartWidget/CartWidget'
 
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
+import CartContainer from '../CartContainer/CartContainer'
 
 
 const Body = ({apiData}) => {
@@ -48,6 +49,7 @@ const Body = ({apiData}) => {
                         <Route exact path="/category/:modelo" element= {<ItemListContainer apiData={apiData}/> }/>
                         <Route exact path="/category" element= {<ItemListContainer apiData={apiData}/> }/>
                         <Route path="/item/:id" element={<DetailProductContainer apiData={apiData}/>}/>
+                        <Route path="/CartContainer" element={<CartContainer />}/>
                 </Routes>
           
         </main>

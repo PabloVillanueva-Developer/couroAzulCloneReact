@@ -1,13 +1,19 @@
 
 import { useParams } from "react-router-dom"
 import "./DetailProductContainer.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { db } from '../../services/firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import { MiContexto } from "../../App";
+import { Link } from "react-router-dom";
+
+let actualizedQunatity
+
 
 const DetailProductContainer = () => {
 
     const {id} = useParams()
+    const { datoContext, setDatoContext } = useContext(MiContexto);
     const [apiData, setApiData] = useState(null)
     const [products, setProducts] = useState(null)
     const [quantity, setQuantity] = useState(0)
@@ -24,11 +30,12 @@ const DetailProductContainer = () => {
             return {id: doc.id, ...doc.data()}
         })
         setProducts(products)
-        console.log(products)
+
         
         const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=autos`)
         const data = await response.json()
         setApiData(data.results)
+     
 
       }catch(err) 
         {console.error('Fallo Solicitud a Api ML. Posible error de conexion a internet. Error:', err)
@@ -38,11 +45,19 @@ const DetailProductContainer = () => {
     },[])
 
 
+    useEffect (() => {
+        actualizedQunatity =  quantity
+       /*  setDatoContext({...selectedProduct, quantity: quantity + 1}) */
+        console.log(datoContext)
+            },[quantity])
+
+
+
         
-    if (quantity < 0) {
+ /*    if (quantity < 0) {
         setQuantity(0)
     }
- 
+  */
 
     if(products) { // cuando se obtienen datos
         selectedProduct = products.find(product => product.id === id);
@@ -53,6 +68,7 @@ const DetailProductContainer = () => {
                 </div>
             )
         }
+      
     } 
         return (
             <div className='detailProductContainer' >
@@ -66,9 +82,11 @@ const DetailProductContainer = () => {
                                     <button className='minusButton' onClick={() => setQuantity(quantity - 1)}>-</button>
                                 </a>
 
-                                <a  href="#">
-                                    <button className='addButton'>Add</button>
-                                </a>
+                               
+                                    <Link to='/CartContainer'>
+                                        <button className='addButton' onClick={()=> {setDatoContext({...selectedProduct, quantity: actualizedQunatity})}}>Add</button>
+                                    </Link>
+                              
 
                                 <a  href="#" >
                                     <button className='plusButton' onClick={() => setQuantity(quantity + 1)}>+</button>
