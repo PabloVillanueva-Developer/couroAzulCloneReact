@@ -10,7 +10,8 @@
 
     
         const { datoContext, setDatoContext } = useContext(MiContexto);
-        const [dataSelectedProduct, setDataSelectedProduct] = useState({})
+        const [dataSelectedProduct, setDataSelectedProduct] = useState({}) // se define un objeto vacio
+        
     
 
         useEffect (() => {
@@ -18,18 +19,29 @@
                 },[datoContext])
 
         useEffect (() => {
-            if(Object.values(dataSelectedProduct).length !== 0)  {
+            if(Object.keys(dataSelectedProduct).length !== 0)  {
 
             arrSelectedProducts.push(dataSelectedProduct)
             console.log(arrSelectedProducts)
             }
         }, [dataSelectedProduct])
 
-    if(dataSelectedProduct) {
+
+    if(arrSelectedProducts) {
+        const arrDataSelectedProduct = [dataSelectedProduct]
         return (
             <div className="cartContainer">
-                <img src={`${dataSelectedProduct.img}`} alt="" />
+                {arrDataSelectedProduct.map((item) => (
+                     
+                <div key={item.id}>
+                    { console.log(item.id)}
+                    <img src={`${item.img}`} alt="" />
+                </div>
+                ))
+              
+               }
             </div>
+        
         )
 
     }
