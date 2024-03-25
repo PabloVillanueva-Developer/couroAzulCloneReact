@@ -17,6 +17,9 @@ const DetailProductContainer = () => {
     const [apiData, setApiData] = useState(null)
     const [products, setProducts] = useState(null)
     const [quantity, setQuantity] = useState(0)
+    const [loadProduct, setLoadProduct] = useState(false)
+    const [arrSelectedProducts, setArrSelectedProducts] = useState([]) // se define un objeto vacio
+        
     let selectedProduct
 
     useEffect(() => { // Consulta a base de datos
@@ -45,19 +48,34 @@ const DetailProductContainer = () => {
     },[])
 
 
-    useEffect (() => {
-        actualizedQunatity =  quantity
-       /*  setDatoContext({...selectedProduct, quantity: quantity + 1}) */
-        console.log(datoContext)
-            },[quantity])
+ 
+
+    useEffect(() => {
+      
+        if (loadProduct === true) {
+            const updatedProduct = { ...selectedProduct, quantity: quantity};
+            setArrSelectedProducts(prevArr => [...prevArr, updatedProduct]);
+          
+        }
+    }, [loadProduct]);
+
+  
+
+    useEffect(() => {
+        setLoadProduct(false);
+        if(datoContext && Object.keys(datoContext).length > 0) {
+            setDatoContext(prevArr => [...prevArr, ...arrSelectedProducts]);
+        } else {
+            setDatoContext([...arrSelectedProducts]);
+        }
+    }, [arrSelectedProducts]);
+
+    useEffect(() => {
+       console.log(datoContext)
+    }, [loadProduct]);
 
 
 
-        
- /*    if (quantity < 0) {
-        setQuantity(0)
-    }
-  */
 
     if(products) { // cuando se obtienen datos
         selectedProduct = products.find(product => product.id === id);
@@ -83,8 +101,8 @@ const DetailProductContainer = () => {
                                 </a>
 
                                
-                                    <Link to='/CartContainer'>
-                                        <button className='addButton' onClick={()=> {setDatoContext({...selectedProduct, quantity: actualizedQunatity})}}>Add</button>
+                                    <Link /* to='/CartContainer' */>
+                                        <button className='addButton' onClick={()=> {setLoadProduct(true)}}>Add</button>
                                     </Link>
                               
 

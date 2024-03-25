@@ -4,38 +4,37 @@
     import React, { useContext, useEffect, useState } from 'react';
 
 
-    let arrSelectedProducts = []
+   
     const CartContainer = () => {
 
-
-    
+            
         const { datoContext, setDatoContext } = useContext(MiContexto);
-        const [dataSelectedProduct, setDataSelectedProduct] = useState({}) // se define un objeto vacio
-        
-    
+        const [arrSelectedProducts, setArrSelectedProducts] = useState([]) // se define un objeto vacio  
 
-        useEffect (() => {
-            setDataSelectedProduct(datoContext)
-                },[datoContext])
+        useEffect(() => {
+         
+            setArrSelectedProducts(datoContext)
+            
+          
+        },[datoContext])
 
-        useEffect (() => {
-            if(Object.keys(dataSelectedProduct).length !== 0)  {
+        useEffect(() => {
 
-            arrSelectedProducts.push(dataSelectedProduct)
-            console.log(arrSelectedProducts)
-            }
-        }, [dataSelectedProduct])
+           console.log(datoContext)
+        },[datoContext])
 
 
-    if(arrSelectedProducts) {
-        const arrDataSelectedProduct = [dataSelectedProduct]
         return (
+            
             <div className="cartContainer">
-                {arrDataSelectedProduct.map((item) => (
-                     
-                <div key={item.id}>
-                    { console.log(item.id)}
+                {arrSelectedProducts && arrSelectedProducts.length > 0 && arrSelectedProducts.map((item) => (
+                <div className='card' key={item.id}>
                     <img src={`${item.img}`} alt="" />
+                    <h3>{item.name  }</h3>
+                    <p>{item.price}</p>
+                    <p>{item.description}</p>
+                    <p>{item.category}</p>
+                  
                 </div>
                 ))
               
@@ -44,7 +43,7 @@
         
         )
 
-    }
+    
     }
 
     export default CartContainer

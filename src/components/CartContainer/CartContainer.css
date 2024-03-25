@@ -1,7 +1,19 @@
 .cartContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: navBarTitles;
     color: aliceblue;
     margin: 2rem 0 0 2rem;
+    overflow: auto;
+    height: 15rem;
 
+
+}
+
+.card {
+    width: 10rem;
+    
 }
 
