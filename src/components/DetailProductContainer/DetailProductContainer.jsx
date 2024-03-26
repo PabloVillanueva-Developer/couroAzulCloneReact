@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from "react"
 import { db } from '../../services/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { MiContexto } from "../../App";
+import { totalQuantityContext } from "../../App";
 import { Link } from "react-router-dom";
 
 let actualizedQunatity
@@ -14,6 +15,7 @@ const DetailProductContainer = () => {
 
     const {id} = useParams()
     const { datoContext, setDatoContext } = useContext(MiContexto);
+    const {totalQuantityDataContext, setTotalQuantityDataContext} = useContext(totalQuantityContext); 
     const [apiData, setApiData] = useState(null)
     const [products, setProducts] = useState(null)
     const [quantity, setQuantity] = useState(0)
@@ -49,20 +51,29 @@ const DetailProductContainer = () => {
 
 
  
-
     useEffect(() => {
-      
         if (loadProduct === true) {
-            const updatedProduct = { ...selectedProduct, quantity: quantity};
-            setArrSelectedProducts(prevArr => [...prevArr, updatedProduct]);
-          
+            // Verificar si el producto ya está en datoContext
+            const productIndex = datoContext.findIndex(product => product.id === selectedProduct.id);
+            if (productIndex !== -1) {
+                // Si el producto ya está en datoContext, actualiza su cantidad
+                const updatedProducts = [...datoContext];
+                updatedProducts[productIndex].quantity += quantity; // Actualiza la cantidad del producto existente
+                setDatoContext(updatedProducts);
+                setTotalQuantityDataContext(totalQuantityDataContext + quantity); // Actualiza el total de la cantidad
+            } else {
+                // Si el producto no está en datoContext, agrégalo
+                const updatedProduct = { ...selectedProduct, quantity: quantity };
+                setArrSelectedProducts(prevArr => [...prevArr, updatedProduct]);
+                setTotalQuantityDataContext(totalQuantityDataContext + quantity); // Actualiza el total de la cantidad
+            }
         }
+        setLoadProduct(false);
     }, [loadProduct]);
-
   
 
     useEffect(() => {
-        setLoadProduct(false);
+     
         if(datoContext && Object.keys(datoContext).length > 0) {
             setDatoContext(prevArr => [...prevArr, ...arrSelectedProducts]);
         } else {
@@ -71,7 +82,7 @@ const DetailProductContainer = () => {
     }, [arrSelectedProducts]);
 
     useEffect(() => {
-       console.log(datoContext)
+   
     }, [loadProduct]);
 
 
@@ -97,7 +108,7 @@ const DetailProductContainer = () => {
                             <p>{selectedProduct.price}</p>
                             <div className='addCartButtons'>
                                 <a  href="#">
-                                    <button className='minusButton' onClick={() => setQuantity(quantity - 1)}>-</button>
+                                    <button className='minusButton' onClick={() => quantity > 0 && setQuantity(quantity - 1)}>-</button>
                                 </a>
 
                                

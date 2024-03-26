@@ -1,19 +1,154 @@
 .cartContainer {
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    justify-self: center;
+    gap: 1rem;
+    border: 0.3rem;
+    border-color: aliceblue;
+    font-family: navBarTitles;
+    color: aliceblue;
+    margin: 0 0 0 2rem;
+    overflow-y: scroll;
+    height: 28rem;
+}
+
+.cartContainer::-webkit-scrollbar {
+   display:none;
+}
+
+
+
+.totalQuantityCartContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5\rem;
+    color: aliceblue;
+    font-size: 2rem;
+    height: 3rem;
+    width: 100vw;
+    padding-top:0.9rem;
+    
+}
+
+.totalQuantityInternalContainer {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(25, 52, 36, 0.633);
+    border-radius: 0.5rem;
+    width: 22rem;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+}
+ 
+
+.card {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    width: 40rem;
+    background-color: rgba(0, 0, 0, 0.857);
+    border-radius: 0.5rem;
+    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+    height: 12rem;
+   
+    
+}
+
+.imgAndQuantity {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: navBarTitles;
+    gap: 1rem;
+}
+
+.descriptionCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    text-align: start;
+    gap: 1rem;
+
+}
+
+
+
+.plusButton {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.minusButton {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.productNull {
     color: aliceblue;
-    margin: 2rem 0 0 2rem;
-    overflow: auto;
-    height: 15rem;
-
-
+    font-size: 3rem;
+    justify-self: center;
+    align-self: center;
 }
 
-.card {
-    width: 10rem;
+.quantity {
+    background-color: rgba(16, 34, 23, 0.923);
+    width: 4rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+}
+
+.imgContainer {
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem; 
+    height: 5.9rem;
+    overflow: hidden;
+    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+}
+
+.img {
+
+    width: 8rem;
+    height: 8rem;
     
+   
 }
 
+.minusButton:active {
+    transform: scale(1.15);
+    background-color: rgba(16, 34, 23, 0.923);
+}
+
+.plusButton:active {
+    transform: scale(1.15);
+    background-color: rgba(16, 34, 23, 0.923);
+}
+
+.addButton:active {
+    transform: scale(1.1);
+    filter: brightness(1.5);
+}
+
+.itemName {
+    font-size: 1.5rem;
+}

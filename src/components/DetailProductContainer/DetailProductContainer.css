@@ -49,7 +49,9 @@
 .addButton{
     width: 4rem;
     height: 3rem;
-    background-color: blueviolet;
+    background-color: rgba(25, 52, 36, 0.633);
+    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+
     color: aliceblue;
     border-radius: 1rem;
     font-size: 1.5rem;
@@ -67,7 +69,7 @@
 }
 
 .quantity {
-    background-color: blueviolet;
+    background-color: rgba(25, 52, 36, 0.633);
     width: 4rem;
     height: 2rem;
     display: flex;

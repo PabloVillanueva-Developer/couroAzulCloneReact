@@ -8,10 +8,12 @@ import DetailProductContainer from './components/DetailProductContainer/DetailPr
 
 //Crear Contexto
 export const MiContexto = createContext();
+export const totalQuantityContext = createContext()
 
 function App() {
   const [apiData, setApiData] = useState(null)
   const [datoContext, setDatoContext] =useState(null) // estado y funcion para actualizar la info del Contexto
+  const [totalQuantityDataContext, setTotalQuantityDataContext] = useState(0); 
 
   useEffect(() => {
    const fetchData = async () => {
@@ -29,7 +31,8 @@ function App() {
 
   return (
     <>
-    
+
+<totalQuantityContext.Provider value={{ totalQuantityDataContext, setTotalQuantityDataContext }}>
     <MiContexto.Provider value={{datoContext, setDatoContext}} >
         <Router>
             <div className="container">
@@ -43,10 +46,16 @@ function App() {
             </div>
         </Router>
     </MiContexto.Provider>
+    </totalQuantityContext.Provider>
+    
       </>
   )
 }
 
 export default App
+
+// me falta boton de eliminar producto del carrito
+// Agregar alert para cuando ya tenes el elemento cargado en el carrito, que te avise que ya esta cargado.
+// Cuando suma price de dos distintos sale is NaN
 
 
