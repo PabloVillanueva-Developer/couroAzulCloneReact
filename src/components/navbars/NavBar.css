@@ -9,7 +9,7 @@ a {
 
 
 .nav {
-    margin: 2.7rem 2rem 0 2rem;
+    margin: 0.01rem 2rem 0 2rem;
     display: grid;
     grid-template-columns: 0.3fr 1fr 0.5fr 1fr;
     font-family: navBarTitles;
@@ -31,6 +31,11 @@ a {
     margin: 0 2rem 0 2rem;
     align-items: center;
     
+}
+
+.logo-link {
+    width: 3.5em;
+    padding-top: 0.4rem;
 }
 
 

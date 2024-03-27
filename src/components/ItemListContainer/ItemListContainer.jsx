@@ -21,19 +21,23 @@ const ListProductContainer = () => {
         })
         setProducts(products)
   
-
-
-/* 
-    const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=autos`)
-    const data = await response.json()
- 
-    setApiData(data.results) */
   
     }catch(err) {console.error('Error:', err)
     }
   }
   fetchData();
   },[])
+
+
+    // Funcion para mostrar valores en pesos.
+    const formatCurrency = (amount, currency) => {
+        return new Intl.NumberFormat('es-AR', {
+          style: 'currency',
+          currency: currency,
+          minimumFractionDigits: 0, 
+          maximumFractionDigits: 0, 
+        }).format(amount);
+      };
 
   
     const { modelo } = useParams();
@@ -57,9 +61,10 @@ const ListProductContainer = () => {
             <div className='ListProductContainer'>
                 {filteredProducts.map((product) => (
                     <div className='cardContainer' key={product.id}>
-                        <h3>{product.title}</h3>
-                        <img src={product.img} alt={product.title} />
-                        <p>{product.price}</p>
+                        <h3 className='titleCard'>{product.name}</h3>
+                        <div className='imgContainer'>
+                            <img src={product.img} alt={product.title} className='img'/>
+                        </div>
                         <Link to={`/item/${product.id}`} className='cardButton'>Ver Detalles</Link>
                     </div>
                 ))}

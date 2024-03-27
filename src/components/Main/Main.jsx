@@ -45,11 +45,11 @@ const Body = ({apiData}) => {
                 </ul>
         
                 <Routes>
-                        <Route exact path="/" element= {<ItemListContainer apiData={apiData}/> }/>
-                        <Route exact path="/category/:modelo" element= {<ItemListContainer apiData={apiData}/> }/>
-                        <Route exact path="/category" element= {<ItemListContainer apiData={apiData}/> }/>
-                        <Route path="/item/:id" element={<DetailProductContainer apiData={apiData}/>}/>
-                        <Route path="/CartContainer" element={<CartContainer />}/>
+                        <Route exact path="/" element= {<ItemListContainer/> }/>
+                        <Route exact path="/category/:modelo" element= {<ItemListContainer/>}/>
+                        <Route exact path="/category" element= {<ItemListContainer/>}/>
+                        <Route path="/item/:id" element={<DetailProductContainer/>}/>
+                        <Route path="/CartContainer" element={<CartContainer/>}/>
                 </Routes>
           
         </main>

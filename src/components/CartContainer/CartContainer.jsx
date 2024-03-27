@@ -3,6 +3,7 @@
     import { MiContexto } from '../../App';
     import { totalQuantityContext } from '../../App'
     import React, { useContext, useEffect, useState } from 'react';
+    import { Link } from 'react-router-dom';
 
     
    
@@ -28,8 +29,9 @@
           };
 
         useEffect(() => {
-           
+           if(datoContext){
             setArrSelectedProducts(datoContext)
+        }
           
         },[datoContext])
 
@@ -52,8 +54,6 @@
         useEffect (()=> {
             let totalPrice = 0
             for (let item of arrSelectedProducts) {
-                console.log(item.price)
-                console.log(item.quantity)
                totalPrice += (item.price*item.quantity)
             
           }
@@ -78,12 +78,13 @@
                     return item
                 })
             })
-
         }
-    
 
-      
-
+        const removeProductCart = (itemId) => {
+            const arrWithoutDeletedProduct = arrSelectedProducts.filter(item => item.id !== itemId);
+            setArrSelectedProducts(arrWithoutDeletedProduct)
+            setDatoContext(arrWithoutDeletedProduct)
+        }
 
         return (
             <>
@@ -117,9 +118,17 @@
                     </div>
 
                     <div className='descriptionCard'>
-                        <h3 className='itemName'>{item.name  }</h3>
-                        <p>Price: {item.price}</p>
-                        <p>Category: {item.category}</p>
+                        <div></div>
+                        <div className='dataContainer'>
+                            <h3 className='itemName'>{item.name  }</h3>
+                            <p>Price: {formatCurrency(item.price, 'ARS')}</p>
+                            <p>Category: {item.category}</p>
+                            <p>Stock disponble: {item.stock}</p>
+                        </div>
+                        
+                            <button key={item.id} onClick={() => removeProductCart(item.id)}>    
+                                <p className='removeProduct'>X</p>
+                            </button>
                     </div>
 
 
@@ -130,8 +139,6 @@
             </div>
             </>
         )
-
-       
     }
 
 

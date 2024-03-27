@@ -50,6 +50,16 @@ const DetailProductContainer = () => {
     },[])
 
 
+     // Funcion para mostrar valores en pesos.
+     const formatCurrency = (amount, currency) => {
+        return new Intl.NumberFormat('es-AR', {
+          style: 'currency',
+          currency: currency,
+          minimumFractionDigits: 0, 
+          maximumFractionDigits: 0, 
+        }).format(amount);
+      };
+
  
     useEffect(() => {
         if (loadProduct === true) {
@@ -100,39 +110,57 @@ const DetailProductContainer = () => {
       
     } 
         return (
-            <div className='detailProductContainer' >
-                { products && (     
-                    <div className="internalDetailProductContainer">
-                            <h3 key={id}>{selectedProduct.title}</h3>
-                            <img className="img" src={selectedProduct.img} alt={selectedProduct.title} />
-                            <p>{selectedProduct.price}</p>
-                            <div className='addCartButtons'>
-                                <a  href="#">
-                                    <button className='minusButton' onClick={() => quantity > 0 && setQuantity(quantity - 1)}>-</button>
-                                </a>
-
-                               
-                                    <Link /* to='/CartContainer' */>
-                                        <button className='addButton' onClick={()=> {setLoadProduct(true)}}>Add</button>
-                                    </Link>
+            <>
+             { products && (  
+            <div className="gridDisplay">
+                <div className='detailProductContainer' >
+                      
+                        <div className="internalDetailProductContainer">
                               
-
-                                <a  href="#" >
-                                    <button className='plusButton' onClick={() => setQuantity(quantity + 1)}>+</button>
-                                </a>
+                                <div className="imgContainer">
+                                    <img className="img" src={selectedProduct.img} alt={selectedProduct.title} />
+                                </div>
+                               
+                                <div className='addCartButtons'>
+                                    <a  href="#">
+                                        <button className='minusButton' onClick={() => quantity > 0 && setQuantity(quantity - 1)}>-</button>
+                                    </a>
 
                                 
-                            </div>
-                            <div>
-                                <a className='quantity' href="">
-                                        <h4>{quantity}</h4>
+                                        <Link /* to='/CartContainer' */>
+                                            <button className='addButton' onClick={()=> {setLoadProduct(true)}}>Add</button>
+                                        </Link>
+                                
+
+                                    <a  href="#" >
+                                        <button className='plusButton' onClick={() => setQuantity(quantity + 1)}>+</button>
                                     </a>
-                            </div>
-                    </div>
-                    )
-                }  
+
+                                    
+                                </div>
+                                <div>
+                                    <a className='quantity' href="">
+                                            <h4>{quantity}</h4>
+                                        </a>
+                                </div>
+                        </div>
+                        
+                  
+                </div>
+                <div className='detailProductContainer detailProductContainer--right'>
+                    <h3 className="name" key={id}>{selectedProduct.name}</h3>
+                    <h4 className="description">{selectedProduct.description}</h4>
+                    <h5 className="price">{formatCurrency(selectedProduct.price, 'ARS')}</h5>
+                    <h6 className="stock">Stock disponible: {selectedProduct.stock}</h6>
+                    
+                </div>
             </div>
+                  )
+                }  
+            </>
+            
         )
+        
     
 }
 

@@ -1,27 +1,62 @@
 .productContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
     color: aliceblue;
     height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
- 
-      
-     
+  
 }
 
 
 .ListProductContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 20rem;
+    justify-items: center ;
+    align-items: center;
+    gap: 2rem;
+    height: 26rem;
     width: 80rem;
     overflow: auto;
     margin: 0 5% 0 5%;
+}
 
+.ListProductContainer::-webkit-scrollbar {
+    display: none; 
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:3rem;
+    background-color: rgba(0, 0, 0, 0.904);
+    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+    border-radius: 1rem;
+    width: 15rem;
+    height: 22rem;
+}
+
+.imgContainer {
+    background-color: rgb(255, 255, 255);
+    width: 4rem;
+    height: 4rem;
+}
+
+.img {
+    width: 5rem;
+    height: 4rem;
 }
 
 .cargando {
     font-size: 10rem;
 }
 
+.titleCard {
+    font-size:1.7rem;
+    width: 15rem;
+    text-align: center;
+}
 

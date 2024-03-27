@@ -52,9 +52,26 @@
     border-radius: 0.5rem;
     border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
     height: 12rem;
+    position: relative;
    
     
 }
+
+.removeProduct {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    top: 1rem;
+    right: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 50%;
+}
+
 
 .imgAndQuantity {
     display: flex;
@@ -68,11 +85,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    justify-self: center;
+    justify-items: center;
     text-align: start;
-    gap: 1rem;
-
+    gap: 2rem;
 }
+
 
 
 
@@ -151,4 +168,13 @@
 
 .itemName {
     font-size: 1.5rem;
+}
+
+.dataContainer {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-self: center;
+
+   gap: 1rem;
 }

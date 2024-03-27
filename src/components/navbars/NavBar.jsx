@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 const NavBar  = () => {
     return (
         <nav className='nav'>
-              <Link to="/" className="logo-link">
-                <img src="#" alt="Logo" />
+            <Link to="/" >
+               <img src="/assets/images/logo.png" alt="" className="logo-link" />
             </Link>
             <ul className='startUl'>
                 <a href='#'>MARKETS</a>
