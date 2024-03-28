@@ -1,10 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import './Main.css'
 import ItemListContainer from '../ItemListContainer/ItemListContainer'
 import DetailProductContainer from '../DetailProductContainer/DetailProductContainer'
 import Loading from '../Loading/Loading'
 import CartWidget from '../CartWidget/CartWidget'
+import { resumeCheckoutContext } from '../../App'
 
 import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
 import CartContainer from '../CartContainer/CartContainer'
@@ -12,15 +13,23 @@ import CartContainer from '../CartContainer/CartContainer'
 
 const Body = ({apiData}) => {
    Router
+
+   const {resumeDataCheckoutContext, setResumeDataCheckoutContext} = useContext(resumeCheckoutContext)
+   const [chekoutActive, setChecoutActive] = useState(0)
  
     let {id} = useParams() 
-    if (!apiData) {
+
+
+    useEffect(()=> {
+        setChecoutActive(resumeDataCheckoutContext.activeChekout)        
+      },[resumeDataCheckoutContext])
+    /* if (!apiData) {
         return <Loading />;
-    } 
+    }  */
     
-    const apiDataArray = Object.values(apiData);
+/*     const apiDataArray = Object.values(apiData);
     const apiDataArrayFlat = apiDataArray.flat()
-    const conditionsProductsData = [...new Set(apiDataArrayFlat.map( product => product.attributes[7].value_name))]
+    const conditionsProductsData = [...new Set(apiDataArrayFlat.map( product => product.attributes[7].value_name))] */
    
 
     return (
@@ -37,7 +46,7 @@ const Body = ({apiData}) => {
             </div>
 
            
-                <ul className='brands'>
+                <ul className={chekoutActive === false || !chekoutActive ? 'brands' : 'brands--blur' }>
                     <li> <Link to='/Category'>All brands</Link> </li>
                     <li> <Link to='/Category/Ford'>Ford</Link> </li>
                     <li> <Link to='/Category/Fiat'>Fiat</Link> </li>

@@ -20,3 +20,157 @@
 .video {
     width: 100vw;
 }
+
+
+.chekoutContainer--display{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    width: 40rem;
+    height: 100%;
+    z-index: 100; 
+    background-color: rgba(240, 248, 255, 0.972);
+    border-radius: 0.5rem;
+    overflow: scroll;
+ 
+}
+
+.chekoutContainer--none {
+    display: none;
+}
+
+.chekoutContainer--display::-webkit-scrollbar {
+    display: none; 
+}
+
+
+.checkoutInternalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 24rem;
+    gap: 0.6rem;
+    padding-top: 2rem;
+}
+
+.checkoutCard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.846);
+    border-radius: 0.5rem;
+    width: 23rem;
+    height: 5rem;
+    border: 1px solid aliceblue;
+    color: aliceblue;
+}
+
+.totalContainer{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.846);
+    border-radius: 0.5rem;
+    width: 80%;
+    height: 5rem;
+    border: 1px solid aliceblue;
+    color: aliceblue;
+}
+
+.confirmButton{
+    width: 10rem;
+    height: 2rem;
+    color: aliceblue;
+    background-color: rgb(50, 185, 115);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.confirmButton:active {
+    transform: scale(1.05);
+}
+
+.payMethodContainer {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.selectPaymethod {
+    width: 15rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    color: black;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 2.2px solid black;
+ 
+}
+
+.input {
+    width: 15rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 2.2px solid black;
+    text-align: center;
+}
+
+.checkoutTitle {
+    position: relative;
+}
+
+.closeCheckout {
+    right: 1rem;
+    top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    background-color: black;
+    color: aliceblue;
+    font-size: 1rem;
+}
+
+.chekaoutContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.checkoutMessagesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 5rem;
+ 
+}
+
+.checkoutMessage {
+    text-align: center;
+    width: 15rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+
+}
+
+

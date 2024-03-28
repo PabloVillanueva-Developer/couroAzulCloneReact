@@ -1,21 +1,34 @@
 .cartContainer {
+    position: relative; /* Con respecto al absolute de chekoutContainer */
     padding-top: 2rem;
     display: grid;
-    grid-template-columns: 1fr;
-    flex-direction: column;
+    grid-template-columns:  0.5fr 1fr 0.5fr ;
+    grid-template-rows: 1fr;
     justify-self: center;
+    justify-items: center;
+    align-self: center;
     gap: 1rem;
     border: 0.3rem;
     border-color: aliceblue;
     font-family: navBarTitles;
     color: aliceblue;
-    margin: 0 0 0 2rem;
     overflow-y: scroll;
     height: 28rem;
+    width: 95vw;
 }
 
 .cartContainer::-webkit-scrollbar {
    display:none;
+}
+
+.confirmButton {
+    grid-column: 3;
+    grid-row: 1;
+    height: 2rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 
@@ -41,10 +54,20 @@
     width: 22rem;
     padding: 0.3rem 0.3rem 0.3rem 0.3rem;
     border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+
+    transition: filter 0.5s ease;
 }
+
+.totalQuantityInternalContainer--blur {
+visibility: hidden;
+pointer-events: none;
+}
+ 
  
 
 .card {
+    grid-column: 2;
+
     display: grid;
     grid-template-columns: 0.5fr 1fr;
     width: 40rem;

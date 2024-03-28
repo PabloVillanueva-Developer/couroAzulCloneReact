@@ -35,8 +35,6 @@ const DetailProductContainer = () => {
             return {id: doc.id, ...doc.data()}
         })
         setProducts(products)
-
-        
         const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=autos`)
         const data = await response.json()
         setApiData(data.results)
@@ -83,7 +81,6 @@ const DetailProductContainer = () => {
   
 
     useEffect(() => {
-     
         if(datoContext && Object.keys(datoContext).length > 0) {
             setDatoContext(prevArr => [...prevArr, ...arrSelectedProducts]);
         } else {
@@ -92,9 +89,8 @@ const DetailProductContainer = () => {
     }, [arrSelectedProducts]);
 
     useEffect(() => {
-   
-    }, [loadProduct]);
-
+        console.log()
+    }, [datoContext]);
 
 
 
@@ -107,7 +103,6 @@ const DetailProductContainer = () => {
                 </div>
             )
         }
-      
     } 
         return (
             <>

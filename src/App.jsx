@@ -4,50 +4,147 @@ import Body from './components/Main/Main'
 import Footer from './components/Footer/Footer'
 import { useEffect, useState, createContext } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import DetailProductContainer from './components/DetailProductContainer/DetailProductContainer'
 
 //Crear Contexto
 export const MiContexto = createContext();
 export const totalQuantityContext = createContext()
+export const resumeCheckoutContext = createContext()
 
 function App() {
-  const [apiData, setApiData] = useState(null)
-  const [datoContext, setDatoContext] =useState(null) // estado y funcion para actualizar la info del Contexto
-  const [totalQuantityDataContext, setTotalQuantityDataContext] = useState(0); 
+    const [apiData, setApiData] = useState(null)
+    const [datoContext, setDatoContext] =useState(null) // estado y funcion para actualizar la info del Contexto
+    const [totalQuantityDataContext, setTotalQuantityDataContext] = useState(0); 
+    const [resumeDataCheckoutContext, setResumeDataCheckoutContext] = useState({}); 
+    const [totalPrice, setTotalPrice] = useState(0)
+    const [totalQuantity, setTotalQuantity] = useState(0)
+    const [chekoutActive, setChecoutActive] = useState(0)
+    const [email, setEmail] = useState()
+    const [repeatEemail, setRepeatEmail] = useState()
+    const [checkoutMessage, setCheckoutMessage] = useState()
 
-  useEffect(() => {
-   const fetchData = async () => {
-    try {
-    const response = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=autos`)
-    const data = await response.json()
-    console.log(data)
-  
-    setApiData(data.results)
- 
-    }catch(err) {console.error('Fallo Solicitud a Api ML. Posible error de conexion a internet. Error:', err)
+    const formatCurrency = (amount, currency) => {
+    return new Intl.NumberFormat('es-AR', {
+        style: 'currency',
+        currency: currency,
+        minimumFractionDigits: 0, 
+        maximumFractionDigits: 0, 
+    }).format(amount);
+    };
+
+
+// Estas funciones capturan cambios en los inputs y los asigna a las variables de estado
+  const captureEmailChange = async(e) => {
+    setEmail(e.target.value)
     }
-  }
-  fetchData();
-  },[])
+
+const captureRepeatEmailChange = (e) => {
+    setRepeatEmail(e.target.value)
+}
+
+
+// Esta funcion se asocia al boton de confirm para verificar si los mails coinciden.
+  const emailChek = () => {
+          
+    if(email !== repeatEemail) {
+            setCheckoutMessage('Los emails ingresados deben ser identicos. Por favor reintente.')
+    }else {setCheckoutMessage('Compra confirmada. Muchas gracias.')}
+}
+
+
+  let checkoutState
+
+  useEffect(()=> {
+    setTotalPrice(resumeDataCheckoutContext.price)
+    setTotalQuantity(resumeDataCheckoutContext.quantity)
+    setChecoutActive(resumeDataCheckoutContext.activeChekout)
+
+  },[resumeDataCheckoutContext])
+
+  useEffect(()=> {
+    console.log(chekoutActive)
+/* console.log()
+    console.log(totalQuantityDataContext) */
+  },[chekoutActive])
+
+  useEffect(()=> {
+    const actualizedProducts = () => {
+        datoContext.name = datoContext.name
+        datoContext.quantity = datoContext.quantity
+    }
+  },[datoContext])
+
 
   return (
     <>
-
-<totalQuantityContext.Provider value={{ totalQuantityDataContext, setTotalQuantityDataContext }}>
+    <resumeCheckoutContext.Provider value={{resumeDataCheckoutContext, setResumeDataCheckoutContext}}> 
+    <totalQuantityContext.Provider value={{ totalQuantityDataContext, setTotalQuantityDataContext }}>
     <MiContexto.Provider value={{datoContext, setDatoContext}} >
         <Router>
             <div className="container">
                 <div  className='videoContainer'>
                     <video className='video' autoPlay muted loop src="/assets/videos/couro-landing.webm"></video>
                 </div>
+                
+                <div className={chekoutActive === true ? 'chekoutContainer--display' : 'chekoutContainer--none'} >
+                    <div className='checkoutInternalContainer'>
+                        <h1>Checkout de Compra</h1>
+                        <button className='closeCheckout' onClick={()=>{ setResumeDataCheckoutContext(prevObj => ({...prevObj, activeChekout: false}));
+                        setEmail('') // reset de valores de input al cerrarse ventana de checkout
+                        setRepeatEmail('')  //reset de valores de input al cerrarse ventana de checkout
+                    
+                    }}>
+                            <p>X</p>
+                        </button>
+
+                        <div className='chekaoutContainer'>
+                            <button  className='confirmButton' onClick={() =>  emailChek()}>Confirm Button</button>
+                            <div className='checkoutMessagesContainer'>
+                                <p className='checkoutMessage'>{checkoutMessage}</p>
+                            </div>
+                        </div>
+
+                        <div className='payMethodContainer'>
+                            <h2 className='payMethodTitle'>Seleccione un medio de pago</h2>
+                            <select name="" id="" className='selectPaymethod'>Payment Method
+                                <option value="Cash">CASH</option>
+                                <option value="Credit Card">CREDIT CARD</option>
+                                <option value="Electronic Bullet">ELECTRONIC BULLET</option>
+                            </select>
+                                
+                            <label htmlFor="mail">
+                                <input type="text" id="mail" placeholder='Ingrese su email' className='input' onChange={captureEmailChange} value={email} />
+                            </label>
+                            <label htmlFor="repeatMail">
+                                <input type="text" id="repeatMail" placeholder='Reingrese su email' className='input' onChange={captureRepeatEmailChange} value={repeatEemail}/>
+                            </label>
+                        </div>
+
+                        <div className='totalContainer'>
+                            <h2>Total Price: {totalPrice ? formatCurrency(totalPrice, 'ARS'): '$ 0'}</h2>
+                            <h2>Total Quantity: {totalQuantity ? totalQuantity : '0'  }</h2>
+                            <h2>{chekoutActive}</h2>
+                        </div>
+
+                        <div >
+                            {datoContext && datoContext.map(item => 
+                                <div key='item.id' className='checkoutCard'>
+                                    <h3>Product: {item.name}</h3>
+                                    <h3>Quantity: {item.quantity}</h3>
+                                </div>
+                            )
+                            /* LISTADO DE PRODUCTOS NOMBRE y CANTIDAD DE DATA CONTEXT*/}
+                        </div>
+                    </div>
+                 </div>
 
                 <Header />
-                <Body apiData={apiData}/>
+                <Body/>
                 <Footer/>
             </div>
         </Router>
     </MiContexto.Provider>
     </totalQuantityContext.Provider>
+    </resumeCheckoutContext.Provider>
     
       </>
   )
@@ -56,31 +153,16 @@ function App() {
 export default App
 
 //Darle logica para que no te deje sumar mas que el stock disponible en detail y en cart
-// Agregar alert para cuando ya tenes el elemento cargado en el carrito, que te avise que ya esta cargado.
-// Agregar boton de cerrar Compra
-// Armar un checkout sencillo con el resumen de la compra y un confirmar con un alert.
-// Emprolijar el codigo.
-// Revisar si 
-
-// ALERT
-//Si se ingresa a /item/:id y el producto no
-//existe en firebase, debemos responder un mensaje adecuado que indique
-//algo relacionado a que el producto no existe.
+// FALTA IMPACTAR STOCK EN FIREBASE
+// Si al ingrear a item:id no existe el producto, debemos responder un mensaje adecuado que indique que no se encuentra el producto y listar todos los productos
 
 //Implementar al menos dos colecciones en firbase:
-//orders: las órdenes generadas, que deben incluir los
-//productos, descripciones y los precios al momento de la
-//compra.
-//Las órdenes deben poder tener items surtidos, cada uno
-//con su cantidad. Por ejemplo: remeras x 2 y gorra x 1
-//id, items, fecha, estado ( por defecto en ‘generada’)
+// falta la coleccion de ordenes que debe guardar la orden con el id (el checkout deberia informar ese numero de orden)
 
 //Checkout mínimo:
 //Items con sus cantidades
 //Total de la orden
 //Input para nombre, apellido y teléfono
-//Input para email y lógica de repetir el email 2 veces (a excepción de
-//que realicen el desafío extra de auth, en ese caso no sería necesario)
 
 //Por cada librería pública extra que utilices, deberás incluir en algún archivo el
 //link al proyecto, y una justificación de por qué agrega valor.
