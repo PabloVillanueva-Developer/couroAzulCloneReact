@@ -7,13 +7,13 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { collection, getDocs, addDoc, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from './services/firebase';
 
-//Crear Contexto
+//CREACION DE CONTEXTOS
 export const MiContexto = createContext();
 export const totalQuantityContext = createContext()
 export const resumeCheckoutContext = createContext()
 
+// HOOJS useSTATE
 function App() {
-    const [apiData, setApiData] = useState(null)
     const [datoContext, setDatoContext] =useState(null) // estado y funcion para actualizar la info del Contexto
     const [totalQuantityDataContext, setTotalQuantityDataContext] = useState(0); 
     const [resumeDataCheckoutContext, setResumeDataCheckoutContext] = useState({}); 

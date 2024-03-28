@@ -1,8 +1,36 @@
-# React + Vite
+#Autor: Pablo Villanueva
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#Couro Azul - Proyecto de React Coder
 
-Currently, two official plugins are available:
+#TECONOLOGIAS UTILIZADAS:
+VITE
+REACT
+REACT ROUTER DOM PARA RUTAS
+FIRESTORE DATABASE PARA PERSISTENCIA DE DATOS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#OBSERVACIONES DEL PROYECTO
+
+La activacion del proyecto debe ser dentro de la carpeta src con la activacion del comando npm run dev.
+
+Se utilizaron tres Hooks de Contexto para compartir informacion en el proyecto: Mi Contexto, TotalQuantitiyContext y resumeCheckoutContext.
+Con mas tiempo se podran modificar los nombres de estos objetos para que sean mas explicitos. Comparten la info de los producots seleccionados, asi como
+tambien informacion de totales y del carrito.
+
+Componentes Principales:
+
+App: Tiene logica robusta ya que alli se renderiza el componente chekout.
+ItemListContainer: Trae lista completa de los productos cargados.
+DetailProductContainer: Captura mediante Hooj useParams() el Id de la ruta y lo toma para renderizar el producto elegido.
+CartContainer: Muestra el listado de productos cargados en el carrito y la opcion de activar el chekout para confirmar compra.
+
+PRUEBAS PRINCIPALES:
+Elementos principales activos del menu de navegacion: SHOW LIST PRODUCTS, SHOW-CART, ORDER QUERY (para consulta de ordenes generadas)
+Recorrer categorias FORD, FIAT, PEUGEOT para ver distribucion por marcas.
+Seleccionar productos con el boton ADD dentro de DetailProductsContainer.
+Agregar mas cantidades desde el carrito
+Activar el chekout, ingresar datos y confirmar la operacion. Copiar Order Id recibido.
+Ir a la seccion ORDER QUERY y pegar el id para obtener datos de la orden generada.
+
+
+
+
