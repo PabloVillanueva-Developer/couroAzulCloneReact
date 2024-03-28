@@ -18,7 +18,7 @@
 }
 
 .cartContainer::-webkit-scrollbar {
-   display:none;
+    display:none;
 }
 
 .confirmButton {
@@ -29,8 +29,25 @@
     border-radius: 0.5rem;
     font-size: 1rem;
     font-weight: 700;
+
+    transition: pointer-events ease 2s;
 }
 
+
+.confirmButton--blur {
+    grid-column: 3;
+    grid-row: 1;
+    height: 2rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+  
+
+    filter: blur(5);
+    pointer-events: none;
+    transition: pointer-events 2s ease;
+}
 
 
 .totalQuantityCartContainer{
@@ -43,7 +60,6 @@
     height: 3rem;
     width: 100vw;
     padding-top:0.9rem;
-    
 }
 
 .totalQuantityInternalContainer {
@@ -59,11 +75,9 @@
 }
 
 .totalQuantityInternalContainer--blur {
-visibility: hidden;
-pointer-events: none;
+    visibility: hidden;
+    pointer-events: none;
 }
- 
- 
 
 .card {
     grid-column: 2;
@@ -75,9 +89,7 @@ pointer-events: none;
     border-radius: 0.5rem;
     border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
     height: 12rem;
-    position: relative;
-   
-    
+    position: relative;    
 }
 
 .removeProduct {
@@ -112,9 +124,6 @@ pointer-events: none;
     text-align: start;
     gap: 2rem;
 }
-
-
-
 
 .plusButton {
     width: 2rem;
@@ -167,11 +176,8 @@ pointer-events: none;
 }
 
 .img {
-
     width: 8rem;
-    height: 8rem;
-    
-   
+    height: 8rem;   
 }
 
 .minusButton:active {
@@ -194,10 +200,9 @@ pointer-events: none;
 }
 
 .dataContainer {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-self: center;
-
-   gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 1rem;
 }

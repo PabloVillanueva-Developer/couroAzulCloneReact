@@ -29,20 +29,20 @@
 }
 
 .brands {
-    display: flex;
-    gap: 15rem;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    color: aliceblue;
-    font-size: 2rem;
-    background-color: rgba(25, 52, 36, 0.633);
-    width: 90%;
-    height: 3rem;
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
-    transition: filter 0.5s ease;
+  display: flex;
+  gap: 15rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: aliceblue;
+  font-size: 2rem;
+  background-color: rgba(25, 52, 36, 0.633);
+  width: 90%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid white; /* Esto crea un borde blanco de 1 píxel */
+  transition: filter 0.5s ease;
 }
 
 .brands--blur { /* distorsion + interaccion mouse = 0 cuando esta abierto el checkout */

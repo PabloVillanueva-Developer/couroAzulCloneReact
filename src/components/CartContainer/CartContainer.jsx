@@ -25,113 +25,99 @@
 
     
    
-    const CartContainer = () => {
+const CartContainer = () => {
 
-            
-        const { datoContext, setDatoContext } = useContext(MiContexto);
-        const {totalQuantityDataContext, setTotalQuantityDataContext} = useContext(totalQuantityContext); 
-        const {resumeDataCheckoutContext, setResumeDataCheckoutContext} = useContext(resumeCheckoutContext)
-        const [arrSelectedProducts, setArrSelectedProducts] = useState([]) // se define un objeto vacio  
-        const [quantity, setQuantity] = useState(0)
-        const [totalQuantity, setTotalQuantity] = useState(0)
-        const [totalPrice, setTotalPrice] = useState(0)
-        const [chekoutActive, setChecoutActive] = useState(0)
-        
-        let itemTotalQuantity = 0
+    const { datoContext, setDatoContext } = useContext(MiContexto);
+    const {totalQuantityDataContext, setTotalQuantityDataContext} = useContext(totalQuantityContext); 
+    const {resumeDataCheckoutContext, setResumeDataCheckoutContext} = useContext(resumeCheckoutContext)
+    const [arrSelectedProducts, setArrSelectedProducts] = useState([]) // se define un objeto vacio  
+    const [quantity, setQuantity] = useState(0)
+    const [totalQuantity, setTotalQuantity] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
+    const [chekoutActive, setChecoutActive] = useState(0)
+    let itemTotalQuantity = 0
 
-        // Funcion para mostrar valores en pesos.
-        const formatCurrency = (amount, currency) => {
-            return new Intl.NumberFormat('es-AR', {
-              style: 'currency',
-              currency: currency,
-              minimumFractionDigits: 0, 
-              maximumFractionDigits: 0, 
+    // Funcion para mostrar valores en pesos.
+    const formatCurrency = (amount, currency) => {
+        return new Intl.NumberFormat('es-AR', {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: 0, 
+            maximumFractionDigits: 0, 
             }).format(amount);
-          };
+    };
 
-        useEffect(() => {
-           if(datoContext){
-            setArrSelectedProducts(datoContext)
-        }
-     
-          
-        },[datoContext])
+    useEffect(() => {
+        if(datoContext){
+        setArrSelectedProducts(datoContext)
+    }
+    },[datoContext])
 
 
 
-        useEffect(() => {
-            itemTotalQuantity = 0
-          
-             for (let item of arrSelectedProducts) {
-             
-                itemTotalQuantity += item.quantity
-             
-           }
-           setTotalQuantity(itemTotalQuantity)
-           setTotalQuantityDataContext(itemTotalQuantity)
-      
-         
-        },[arrSelectedProducts])
-
-        useEffect (()=> {
-            let totalPrice = 0
+    useEffect(() => {
+        itemTotalQuantity = 0
             for (let item of arrSelectedProducts) {
-               totalPrice += (item.price*item.quantity)
-               
-            
-          }
-            setTotalPrice(totalPrice)
-        },[arrSelectedProducts])
+            itemTotalQuantity += item.quantity
+        }
+        setTotalQuantity(itemTotalQuantity)
+        setTotalQuantityDataContext(itemTotalQuantity)
+    },[arrSelectedProducts])
 
-      
-        useEffect(()=>{
-            setResumeDataCheckoutContext({price: totalPrice, quantity: totalQuantity})
-        },[totalQuantityDataContext])
+    useEffect (()=> {
+        let totalPrice = 0
+        for (let item of arrSelectedProducts) {
+            totalPrice += (item.price*item.quantity)
+        }
+        setTotalPrice(totalPrice)
+    },[arrSelectedProducts])
 
-        useEffect(()=> {
-            setChecoutActive(resumeDataCheckoutContext.activeChekout)
-            
-        },[resumeDataCheckoutContext])
-       
+    
+    useEffect(()=>{
+        setResumeDataCheckoutContext({price: totalPrice, quantity: totalQuantity})
+    },[totalQuantityDataContext])
 
-        const updateQuantity = (id, newQuantity) => {
-            if(newQuantity < 0) { // Si quantity es menor a 1 (o sea cero) que no haga nada.
-                return
+
+    useEffect(()=> {
+        setChecoutActive(resumeDataCheckoutContext.activeChekout)
+    },[resumeDataCheckoutContext])
+    
+
+    const updateQuantity = (id, newQuantity) => {
+        if (newQuantity < 0) {
+            return;
+        }
+        const updatedProducts = arrSelectedProducts.map(item => {
+            if (item.id === id) {
+                return { ...item, quantity: newQuantity };
             }
-            setArrSelectedProducts(prevArr => {
-                return prevArr.map(item => {
-                    if (item.id === id) {
-                        return {...item, quantity:newQuantity}
-                    }
-                    return item
-                })
-            })
-        }
+            return item;
+        });
+        setArrSelectedProducts(updatedProducts);
+        setDatoContext(updatedProducts); 
+    };
 
-        const removeProductCart = (itemId) => {
-            const arrWithoutDeletedProduct = arrSelectedProducts.filter(item => item.id !== itemId);
-            setArrSelectedProducts(arrWithoutDeletedProduct)
-            setDatoContext(arrWithoutDeletedProduct)
-        }
+    const removeProductCart = (itemId) => {
+        const arrWithoutDeletedProduct = arrSelectedProducts.filter(item => item.id !== itemId);
+        setArrSelectedProducts(arrWithoutDeletedProduct)
+        setDatoContext(arrWithoutDeletedProduct)
+    }
 
-        return (
-            <>
-            <div className={chekoutActive === false || !chekoutActive ? 'totalQuantityCartContainer' : 'totalQuantityInternalContainer--blur' }>
-                <div className='totalQuantityInternalContainer' >
-                    <p>Total: {formatCurrency(totalPrice, 'ARS')}</p>
-                </div>
-                <div  className='totalQuantityInternalContainer' >
-                    <p>Quantity:  {totalQuantity} </p>
-                </div>
+
+    
+    return (
+        <>
+        <div className={chekoutActive === false || !chekoutActive ? 'totalQuantityCartContainer' : 'totalQuantityInternalContainer--blur' }>
+            <div className='totalQuantityInternalContainer' >
+                <p>Total: {formatCurrency(totalPrice, 'ARS')}</p>
             </div>
-       
-
-            <div className="cartContainer">    
-                
-         
-                {arrSelectedProducts && arrSelectedProducts.length > 0 && arrSelectedProducts.map((item) => (
-             
-               
+            <div  className='totalQuantityInternalContainer' >
+                <p>Quantity:  {totalQuantity} </p>
+            </div>
+        </div>
+    
+        <div className="cartContainer">       
+            {arrSelectedProducts && arrSelectedProducts.length > 0 && arrSelectedProducts.map((item) => (
                 <div  className='card'  key={item.id}>
                     <div className='imgAndQuantity'>
                         <div className='imgContainer'>
@@ -163,16 +149,16 @@
                             </button>
                     </div>
 
-
                 </div> 
+                
                 ))
-             
-               }
-                <button className='confirmButton' onClick={() => setResumeDataCheckoutContext(prevObj => ({ ...prevObj, activeChekout: true }))}>By Now !</button>
+            }
+            {arrSelectedProducts && arrSelectedProducts.length > 0 && <button className={resumeDataCheckoutContext.activeChekout === true ? 'confirmButton--blur' : 'confirmButton' } onClick={() => setResumeDataCheckoutContext(prevObj => ({ ...prevObj, activeChekout: true }))}>Buy Now !</button>
+            }
             </div>
-            </>
-        )
-    }
+        </>
+    )
+}
 
 
-    export default CartContainer
+export default CartContainer
