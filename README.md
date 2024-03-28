@@ -12,12 +12,11 @@ FIRESTORE DATABASE PARA PERSISTENCIA DE DATOS
 
 La activacion del proyecto debe ser dentro de la carpeta src con la activacion del comando npm run dev.
 
-Se utilizaron tres Hooks de Contexto para compartir informacion en el proyecto: Mi Contexto, TotalQuantitiyContext y resumeCheckoutContext.
+Se utilizaron tres Hooks de Contexto para compartir informacion entre componentes del proyecto: Mi Contexto, TotalQuantitiyContext y resumeCheckoutContext.
 Con mas tiempo se podran modificar los nombres de estos objetos para que sean mas explicitos. Comparten la info de los producots seleccionados, asi como
 tambien informacion de totales y del carrito.
 
 Componentes Principales:
-
 App: Tiene logica robusta ya que alli se renderiza el componente chekout.
 ItemListContainer: Trae lista completa de los productos cargados.
 DetailProductContainer: Captura mediante Hooj useParams() el Id de la ruta y lo toma para renderizar el producto elegido.
