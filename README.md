@@ -10,6 +10,9 @@ FIRESTORE DATABASE PARA PERSISTENCIA DE DATOS
 
 #OBSERVACIONES DEL PROYECTO
 
+Este proyecto utiliza variables de entorno para las credenciales de Firestore. Se requiere crear un archivo .env y pegar alli las credenciales aportadas
+por el administrador del proyecto.
+
 La activacion del proyecto debe ser dentro de la carpeta src con la activacion del comando npm run dev.
 
 Se utilizaron tres Hooks de Contexto para compartir informacion entre componentes del proyecto: Mi Contexto, TotalQuantitiyContext y resumeCheckoutContext.
